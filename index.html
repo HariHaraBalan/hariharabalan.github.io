@@ -1,13 +1,14 @@
 <html>
 <head>
 <script src='https://www.google.com/recaptcha/api.js'></script>
+
+</head>
+<body>
 <script>
 function recaptchaCallback(response) {
 	alert ('Hello!!!');
 	parent.postMessage(response, '*');
 }</script>
-</head>
-<body>
 <div class="g-recaptcha"  data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy"></div>
 
 </body>
