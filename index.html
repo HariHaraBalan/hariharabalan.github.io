@@ -2,7 +2,7 @@
 <head>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
-window.recaptchaCallback = function recaptchaCallback(response) {
+function recaptchaCallback(response) {
 	alert ('Hello!!!');
 	parent.postMessage(response, '*');
 }</script>
