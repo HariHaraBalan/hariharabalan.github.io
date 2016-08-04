@@ -9,9 +9,9 @@ function recaptchaCallback(response) {
 alert (response);
 	parent.postMessage(response, '*');
 }</script>
-<button id="buttonclick" name="button" onclick="alert('click event occured')" class="g-recaptcha"  data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy">Click me</button>
+<button id="buttonclick" name="button" class="g-recaptcha"  data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy">Click me</button>
 <script>
-setTimeout(function(){ alert("Hello");document.getElementById("buttonclick").click(); }, 3000);
+setTimeout(function(){document.getElementById("buttonclick").click(); }, 1000);
 
 </script>
 </body>
