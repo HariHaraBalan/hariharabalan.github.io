@@ -9,7 +9,8 @@ function recaptchaCallback(response) {
 alert (response);
 	parent.postMessage(response, '*');
 }</script>
-<button class="g-recaptcha"  data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy" name="button">Click me</button>
+<button id="buttonclick" class="g-recaptcha"  data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy" name="button">Click me</button>
+<script>document.getElementById('buttonclick').click();</script>
 
 </body>
 </html>
