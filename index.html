@@ -5,7 +5,7 @@
 </head>
 <body>
 <script>
->document.getElementById("main").style.display = "none";
+document.getElementById("main").style.display = "none";
 function recaptchaCallback(response) {
 	alert (response);
 	parent.postMessage(response, '*');
