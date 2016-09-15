@@ -6,6 +6,7 @@
 <body>
 <script>
 function recaptchaCallback(response) {
+alert (response);
 	parent.postMessage(response, '*');
 }</script>
 <div class="g-recaptcha" data-theme="light" data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
