@@ -1,15 +1,25 @@
 <html>
-<head>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-
-</head>
-<body>
-<script>
-function recaptchaCallback(response) {
-alert (response);
-	parent.postMessage(response, '*');
-}</script>
-<div class="g-recaptcha" data-theme="light" data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
-
-</body>
+  <head>
+    <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+      alert ('Onload');
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy'
+        });
+        alert ('After Onload');
+      };
+    </script>
+  </head>
+  <body>
+    <form action="?" method="POST">
+      <div id="html_element"></div>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+  </body>
 </html>
+
