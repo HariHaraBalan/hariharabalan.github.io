@@ -5,6 +5,9 @@
       var verifyCallback = function(response) {
         alert(response);
       };
+      var expiredCallback = function(response) {
+	  	alert('Expired: ' + response);
+      };
       var widgetId1;
       var widgetId2;
       var onloadCallback = function() {
@@ -12,7 +15,8 @@
           'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy',
           'callback' : verifyCallback,
           'theme' : 'dark',
-          'size' : 'normal'
+          'size' : 'normal',
+          'expired-callback' : 'expiredCallback'
         });
       };
     </script>
