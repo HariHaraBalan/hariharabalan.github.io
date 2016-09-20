@@ -1,36 +1,25 @@
 <html>
-  <head>
-    <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
-    <script type="text/javascript">
-      var verifyCallback = function(response) {
-      	parent.postMessage(response, '*');
-      };
+<head>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+		var checkConnection = function() {
+			if (typeof grecaptcha === "undefined") {
+				alert ('Failed to reach Google');
+				parent.postMessage('FAILED', '*');
+			}
+		};
 
-      var onloadCallback = function() {
-     	alert ("Inside onloadCallback: ", grecaptcha);
-        grecaptcha.render('recaptcha', {
-          'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy',
-          'callback' : verifyCallback,
-          'theme' : 'light',
-          'size' : 'normal'
-        });
-      };
-
-      var checkConnection = function() {
-      	if (typeof grecaptcha === "undefined") {
-      		alert ('Something went wrong while we reach Google!!!');
-      		parent.postMessage('FAILED', '*');
-      	} else {
-      		alert ('Hopefully we reached Google');
-      	}
-      };
-    </script>
-  </head>
-  <body>
-	<div id="recaptcha" align="center" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=ta" async defer></script>
-    <script>
 		window.setTimeout(checkConnection, 5000);
 	</script>
-  </body>
+</head>
+
+<body>
+	<script>
+		function recaptchaCallback(response) {
+			parent.postMessage(response, '*');
+		}
+	</script>
+<div class="g-recaptcha" align="center" data-theme="light" data-callback="recaptchaCallback" data-sitekey="6LfdwSgTAAAAAGge8CK1a9Ws45Dm9Uk-JR9qxHo0" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+
+</body>
 </html>
