@@ -2,16 +2,17 @@
   <head>
     <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
     <script type="text/javascript">
+		var responseRendered = false;
       var verifyCallback = function(response) {
         alert(response);
+        responseRendered = true;
       };
       var expiredCallback = function(response) {
 	  	alert('Expired: ' + response);
       };
-      var widgetId1;
-      var widgetId2;
+
       var onloadCallback = function() {
-      alert (grecaptcha);
+     	alert ("Inside onloadCallback: ", grecaptcha);
         grecaptcha.render('example3', {
           'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy',
           'callback' : verifyCallback,
@@ -20,6 +21,22 @@
           'expired-callback' : 'expiredCallback'
         });
       };
+
+      var showAlert = function() {
+      	alert ("Inside ShowAlert: ", grecaptcha);
+      	if (grecaptcha) {
+      		alert ('Hopefully we reached Google');
+      	} else {
+      		alert ('Something went wrong while we reach Google!!!);
+      	}
+
+      	if (responseRendered) {
+      		alert ('Hopefully we got an response');
+      	} else {
+      		alert ('Something went wrong !!!);
+      	}
+      };
+
     </script>
   </head>
   <body>
@@ -30,6 +47,7 @@
     </form>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=ta"
         async defer>
+       window.seTimeout(showAlert, 5000);
     </script>
   </body>
 </html>
