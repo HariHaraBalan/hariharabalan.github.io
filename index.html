@@ -4,11 +4,7 @@
     <script type="text/javascript">
 		var responseRendered = false;
       var verifyCallback = function(response) {
-        alert(response);
-        responseRendered = true;
-      };
-      var expiredCallback = function(response) {
-	  	alert('Expired: ' + response);
+      	parent.postMessage(response, '*');
       };
 
       var onloadCallback = function() {
@@ -17,8 +13,7 @@
           'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy',
           'callback' : verifyCallback,
           'theme' : 'dark',
-          'size' : 'normal',
-          'expired-callback' : 'expiredCallback'
+          'size' : 'normal'
         });
       };
 
@@ -28,6 +23,7 @@
       		alert ('Hopefully we reached Google');
       	} else {
       		alert ('Something went wrong while we reach Google!!!');
+      		parent.postMessage('FAILED', '*');
       	}
       };
 
@@ -41,6 +37,8 @@
     </form>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=ta"
         async defer>
+    </script>
+    <script>
             alert ('Hello!!!');
        		window.setTimeout(showAlert, 5000);
 	</script>
