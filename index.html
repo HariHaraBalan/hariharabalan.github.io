@@ -2,45 +2,35 @@
   <head>
     <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
     <script type="text/javascript">
-		var responseRendered = false;
       var verifyCallback = function(response) {
       	parent.postMessage(response, '*');
       };
 
       var onloadCallback = function() {
      	alert ("Inside onloadCallback: ", grecaptcha);
-        grecaptcha.render('example3', {
+        grecaptcha.render('recaptcha', {
           'sitekey' : '6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy',
           'callback' : verifyCallback,
-          'theme' : 'dark',
+          'theme' : 'light',
           'size' : 'normal'
         });
       };
 
-      var showAlert = function() {
-      	alert ("Inside ShowAlert: ", grecaptcha);
-      	if (grecaptcha) {
-      		alert ('Hopefully we reached Google');
-      	} else {
+      var checkConnection = function() {
+      	if (!grecaptcha) {
       		alert ('Something went wrong while we reach Google!!!');
       		parent.postMessage('FAILED', '*');
+      	} else {
+      		alert ('Hopefully we reached Google');
       	}
       };
-
     </script>
   </head>
   <body>
-    <form action="?" method="POST">
-      <div id="example3"></div>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=ta"
-        async defer>
-    </script>
+	<div class="recaptcha" align="center" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=ta" async defer></script>
     <script>
-            alert ('Hello!!!');
-       		window.setTimeout(showAlert, 5000);
+		window.setTimeout(checkConnection, 5000);
 	</script>
   </body>
 </html>
