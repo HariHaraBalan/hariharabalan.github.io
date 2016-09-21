@@ -8,7 +8,7 @@
 		    if( results == null ) {
 		    	return "";
 		    } else {
-		    	alert(results[1]);
+		    	return results[1];
 		    }
 		};
 		var verifyCallback = function(response) {
@@ -19,7 +19,7 @@
 			var siteKey = getSiteKey();
 			alert (siteKey);
 			grecaptcha.render('recaptcha', {
-				'sitekey' : getSiteKey(),
+				'sitekey' : siteKey,
 				'callback' : verifyCallback,
 				'theme' : 'light',
 				'size' : 'normal'
