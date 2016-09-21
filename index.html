@@ -4,8 +4,7 @@
 	<script>
 		var checkConnection = function() {
 			if (typeof grecaptcha === "undefined") {
-				alert ('Failed to reach Google');
-				parent.postMessage('FAILED', '*');
+				parent.postMessage('NOT_REACHABLE', '*');
 			}
 		};
 
