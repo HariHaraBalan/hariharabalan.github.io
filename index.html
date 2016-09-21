@@ -1,24 +1,44 @@
 <html>
 <head>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<script>
-		var checkConnection = function() {
-			if (typeof grecaptcha === "undefined") {
-				parent.postMessage('NOT_REACHABLE', '*');
-			}
+    <script type="text/javascript">
+    	var getSiteKey = function() {
+		    var regexS = "[\\?&]sitekey=([^&#]*)";
+		    var regex = new RegExp( regexS );
+		    var results = regex.exec( window.location.href );
+		    if( results == null ) {
+		    	return "";
+		    } else {
+		    	alert(results[1]);
+		    }
 		};
-
-		window.setTimeout(checkConnection, 5000);
-	</script>
+		var verifyCallback = function(response) {
+			parent.postMessage(response, '*');
+		};
+		var recaptchaCallback = function() {
+			alert ("Inside onloadCallback: ", grecaptcha);
+			grecaptcha.render('recaptcha', {
+				'sitekey' : getSiteKey(),
+				'callback' : verifyCallback,
+				'theme' : 'light',
+				'size' : 'normal'
+			});
+		};
+      var checkConnection = function() {
+      	if (!grecaptcha) {
+      		alert ('Something went wrong while we reach Google!!!');
+      		parent.postMessage('FAILED', '*');
+      	} else {
+      		alert ('Hopefully we reached Google');
+      	}
+      };
+    </script>
 </head>
 
 <body>
-	<script>
-		function recaptchaCallback(response) {
-			parent.postMessage(response, '*');
-		}
+	<div class="recaptcha" align="center" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit&hl=ta" async defer></script>
+    <script>
+		window.setTimeout(checkConnection, 5000);
 	</script>
-<div class="g-recaptcha" align="center" data-theme="light" data-callback="recaptchaCallback" data-sitekey="6LenNyUTAAAAAF4pstt16ngGn6O7nEgTR3Outwjy" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
-
 </body>
 </html>
