@@ -16,6 +16,8 @@
 		};
 		var recaptchaCallback = function() {
 			alert ("Inside onloadCallback: ", grecaptcha);
+			var siteKey = getSiteKey();
+			alert (siteKey);
 			grecaptcha.render('recaptcha', {
 				'sitekey' : getSiteKey(),
 				'callback' : verifyCallback,
