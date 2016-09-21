@@ -2,7 +2,7 @@
 <head>
     <script type="text/javascript">
     	var getSiteKey = function() {
-		    var regexS = "[\\?&]sitekey=([^&#]*)";
+		    var regexS = "[\\?&]siteKey=([^&#]*)";
 		    var regex = new RegExp( regexS );
 		    var results = regex.exec( window.location.href );
 		    if( results == null ) {
@@ -15,9 +15,7 @@
 			parent.postMessage(response, '*');
 		};
 		var recaptchaCallback = function() {
-			alert ("Inside onloadCallback: ", grecaptcha);
 			var siteKey = getSiteKey();
-			alert (siteKey);
 			grecaptcha.render('recaptcha', {
 				'sitekey' : siteKey,
 				'callback' : verifyCallback,
@@ -27,10 +25,7 @@
 		};
       var checkConnection = function() {
       	if (!grecaptcha) {
-      		alert ('Something went wrong while we reach Google!!!');
       		parent.postMessage('FAILED', '*');
-      	} else {
-      		alert ('Hopefully we reached Google');
       	}
       };
     </script>
