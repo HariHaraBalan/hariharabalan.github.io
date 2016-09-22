@@ -24,7 +24,7 @@
 			});
 		};
       var checkConnection = function() {
-      	if (!grecaptcha) {
+      	if (typeof grecaptcha === "undefined") {
       		parent.postMessage('NOT_REACHABLE', '*');
       	}
       };
