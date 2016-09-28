@@ -12,6 +12,7 @@
 		    }
 		};
 		var verifyCallback = function(response) {
+			alert (response);
 			parent.postMessage(response, '*');
 		};
 		var recaptchaCallback = function() {
@@ -24,6 +25,7 @@
 			});
 		};
       var checkConnection = function() {
+      alert ('checkConnection');
       	if (typeof grecaptcha === "undefined") {
       		parent.postMessage('NOT_REACHABLE', '*');
       	}
