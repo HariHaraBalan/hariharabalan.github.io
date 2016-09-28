@@ -12,7 +12,7 @@
 		    }
 		};
 		var verifyCallback = function(response) {
-			alert (response);
+			console.log (response);
 			parent.postMessage(response, '*');
 		};
 		var recaptchaCallback = function() {
@@ -25,7 +25,7 @@
 			});
 		};
       var checkConnection = function() {
-      alert ('checkConnection');
+      console.log ('checkConnection');
       	if (typeof grecaptcha === "undefined") {
       		parent.postMessage('NOT_REACHABLE', '*');
       	}
