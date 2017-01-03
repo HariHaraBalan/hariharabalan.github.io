@@ -1,19 +1,8 @@
 <html>
 	<head>
 		<script type="text/javascript">
-			var pp_loc_map = {"ar-EG":"ar","da-DK":"da","de-DE":"de","de-DE-AT":"de-AT","de-DE-CH":"de-CH","en-AU":"en",
-				"en-GB":"en-GB","en-US":"en","es-ES":"es","es-XC":"es-419","fr-CA":"fr-CA","fr-FR":"fr",
-				"fr-XC":"fr","he-IL":"iw","id-ID":"id","it-IT":"it","ja-JP":"ja","ko-KR":"ko","nl-NL":"nl",
-				"no-NO":"no","pl-PL":"pl","pt-BR":"pt-BR","pt-PT":"pt-PT","ru-RU":"ru","sv-SE":"sv","th-TH":"th",
-				"tr-TR":"tr","zh-CN":"zh-CN","zh-HK":"zh-HK","zh-TW":"zh-TW","zh-XC":"zh-CN"};
-			function getGoogLocale(l,c){
-				if(c !== undefined && (c.toLowerCase() === 'at' || c.toLowerCase() === 'ch')) {
-					l = l + '-' + c.toUpperCase();
-				}
-				return pp_loc_map[l] || 'en';
-			}
-			var getKey = function(key) {
-				var regexS = "[\\?&]"+ key +"=([^&#]*)";
+			var getSiteKey = function() {
+				var regexS = "[\\?&]siteKey=([^&#]*)";
 				var regex = new RegExp( regexS );
 				var results = regex.exec( window.location.href );
 				if( results == null ) {
@@ -26,7 +15,7 @@
 				parent.postMessage(response, '*');
 			};
 			var recaptchaCallback = function() {
-				var siteKey = getKey('siteKey');
+				var siteKey = getSiteKey();
 				grecaptcha.render('recaptcha', {
 					'sitekey' : siteKey,
 					'callback' : verifyCallback,
@@ -39,23 +28,11 @@
 					parent.postMessage('NOT_REACHABLE', '*');
 				}
 			};
-			var getGLocale = function() {
-				var loc = getKey('loc');
-				var country = getKey('country');
-				return getGoogLocale(loc, country);
-			};
 		</script>
 	</head>
 	<body>
 		<div id="recaptcha" align="center" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
-		<script>
-			var source = document.createElement("script");
-			source.src = "https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit&hl=" + getGLocale();
-			//TBD: confirm if this is right way to do and uncomment below.
-			//source.async = true;
-			//source.defer = true;
-			document.getElementsByTagName("head")[0].appendChild(source);
-        </script>
+		<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit" async defer></script>
 		<script>
 			window.setTimeout(checkConnection, 5000);
 		</script>
