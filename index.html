@@ -7,9 +7,12 @@
 				"no_NO":"no","pl_PL":"pl","pt_BR":"pt-BR","pt_PT":"pt-PT","ru_RU":"ru","sv_SE":"sv","th_TH":"th",
 				"tr_TR":"tr","zh_CN":"zh-CN","zh_HK":"zh-HK","zh_TW":"zh-TW","zh_XC":"zh-CN"};
 			function getGoogLocale(l,c){
+			console.log ('locale:', l);
 				if(c !== undefined && (c.toLowerCase() === 'at' || c.toLowerCase() === 'ch') && (l === 'de_DE')) {
 					l = l + '_' + c.toUpperCase();
 				}
+				console.log ('locale:', l);
+				console.log ('pp_loc_map[l]:', pp_loc_map[l]);
 				return pp_loc_map[l] || 'en';
 			}
 			var getKey = function(key) {
