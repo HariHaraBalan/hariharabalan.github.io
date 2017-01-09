@@ -8,11 +8,12 @@
 				"tr_TR":"tr","zh_CN":"zh-CN","zh_HK":"zh-HK","zh_TW":"zh-TW","zh_XC":"zh-CN","ar":"ar","da":"da",
 				"de":"de","en":"en","es":"es","fr":"fr","id":"id","ko":"ko","pt":"pt","ru":"ru","zh":"zh-CN"};
 			function getGoogLocale(l,c){
+				var loc_lower = l.toLowerCase();
 				if(c !== undefined && (c.toLowerCase() === 'at' || c.toLowerCase() === 'ch') && (l === 'de_DE')) {
 					l = l + '_' + c.toUpperCase();
 				}
-				if(l.endsWith('ROWLITE') || l.endsWith('GROUPA') || l.endsWith('GROUPB') || l.endsWith('GROUPC')) {
-					l = l.substring(0,2);
+				if(loc_lower.endsWith('rowlite') || loc_lower.endsWith('groupa') || loc_lower.endsWith('groupb') || loc_lower.endsWith('groupc')) {
+					l = loc_lower.substring(0,2);
 				}
 				return pp_loc_map[l] || 'en';
 			}
